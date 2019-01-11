@@ -28,7 +28,7 @@ public class JDBCExample1 {
 
 		} catch (SQLException e) {
 
-			System.out.println("데이터베이스 연결 실패!");
+			System.out.println("데이터베이스 연결 실패!!");
 			e.printStackTrace();
 		}
 	}
