@@ -21,12 +21,15 @@ public class JDBCExample1 {
 
 			conn.close();
 
-		} catch (ClassNotFoundException cnfe) {
-			System.out.println("해당클래스를 찾을수 없습니다.");
-			System.out.println();
+		} catch (ClassNotFoundException e) {
+			System.out.println("해당 클래스를 찾을 수 없습니다.");
+			System.out.println("DBMS 드라이버 로드 실패");
+			e.printStackTrace();
 
-		} catch (SQLException se) {
-			System.out.println(se.getMessage());
+		} catch (SQLException e) {
+
+			System.out.println("데이터베이스 연결 실패!");
+			e.printStackTrace();
 		}
 	}
 }
