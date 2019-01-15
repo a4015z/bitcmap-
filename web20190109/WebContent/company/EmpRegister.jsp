@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+	    if(session.getAttribute("login")==null){
+			request.setAttribute("msg", "로그인 후 사용 가능합니다.");
+			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+			rd.forward(request, response);
+		}
+    %>
     <%String msg = (String)request.getAttribute("msg"); %>
 <!DOCTYPE html>
 <html>
@@ -48,7 +55,7 @@
     <div id="wrap">
     	<h1>사원 등록 페이지</h1>
     	<hr>
-        <form action="/registerAction.jsp" method="post">
+        <form action="/registerAction.jsp">
             <label for="empno">사원번호</label>
             <input type="number" name="empno" id="empno"><br>
             <label for="ename">사원이름</label>

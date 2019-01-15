@@ -19,26 +19,31 @@ public class UserDAO {
 		String PWD = "1234";
 		
 		try {
-			Class.forName("oracle.jdbc.OracleDriver");
+			Class.forName("oracle.jdbc.OracleDriver"); //클래스 이름을 로드 !
 			conn = DriverManager.getConnection(URL, USER, PWD);
+			
+			//Clㅁss.forName 을 하면 메모리에 o~~~ 드라이버가 올라가고 
+			// 올라갔으니 객체사용 가능 ! -> 드라이버 매니저라는 객체 사용가능하고 
+			// get Connection을 사용 
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 	}
+
 	
 	public int signUp(User u) {
 		int result = -1;
-		
+		ResultSet rs=null; 
 		String query = "INSERT INTO USER_INFO VALUES(?,?,?,?,seq_user_info.nextval)";
 		
 		try {
-			pstmt = conn.prepareStatement(query);
+			pstmt = conn.prepareStatement(query); //conn -> 연결 연결 후에 query 문 실행한다라고 생각 
 			pstmt.setString(1, u.getId());
 			pstmt.setString(2, u.getPassword());
 			pstmt.setString(3, u.getName());
 			pstmt.setString(4, u.getPhoto());
 			
-			result = pstmt.executeUpdate();
+			result = pstmt.executeUpdate(); //진짜실행  셀렉트 뺴고 다Update
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
